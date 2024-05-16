@@ -1,4 +1,4 @@
-# TickIt-frontend
+# TickIt - Frontend
 
 ## Summary
 
@@ -6,7 +6,7 @@ Create a backend with Spring that can create, update, read and delete todos from
 
 ## Example UI
 
-![UI Example](todo_app.png)
+![UI Example](/public/todo_app.png)
 
 ## Frontend MVP
 
