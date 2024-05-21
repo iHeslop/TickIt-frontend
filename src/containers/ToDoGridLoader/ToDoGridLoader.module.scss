@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  background-color: rgba(237, 236, 231, 0.7);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  padding: 2em;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  height: 100%;
+  overflow-y: scroll;
+  padding-right: 2em;
+}

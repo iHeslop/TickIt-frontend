@@ -20,8 +20,38 @@ html {
  * Remove the margin in all browsers.
  */
 
+@font-face {
+  font-family: "Avere-Regular";
+  src: url("./assets/fonts/DEMO-averestitleroman-regular.otf");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Avere-Thin";
+  src: url("./assets/fonts/DEMO-averestitleroman-thin.otf");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Avere-Light";
+  src: url("./assets/fonts/DEMO-averestitleroman-light.otf");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("./assets/fonts/Montserrat-VariableFont_wght.ttf");
+  font-display: swap;
+}
+
+* {
+  font-family: "Avere-Light";
+  letter-spacing: 0.05em;
+}
+
 body {
   margin: 0;
+  background-color: #edece7;
 }
 
 /**

@@ -10,7 +10,7 @@ Create a backend with Spring that can create, update, read and delete todos from
 
 ## Frontend MVP
 
-- Ability to add, complete, delete and edit todos
+- Ability to add, complete, delete and edit to-dos
 - Typescript & testing with React Test Library
 - All errors must be handled and passed on properly back to the user (toast notifications are a good way of doing this)
 - Must look polished, there is an example image attached to this spec and there are hundreds of examples of good looking todo apps online

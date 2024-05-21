@@ -1,0 +1,29 @@
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+.box {
+  display: flex;
+  padding: 4%;
+  width: 100%;
+  gap: 2em;
+}
+
+.bg {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  opacity: 0.3;
+  z-index: -1;
+}
+
+.copyright {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding-right: 1vw;
+  font-family: "Avere-Regular";
+  font-size: 20px;
+  letter-spacing: 0.2em;
+}
