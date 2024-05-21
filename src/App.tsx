@@ -1,9 +1,12 @@
 import HomePage from "./pages/HomePage/HomePage";
+import EntriesContextProvider from "./context/EntriesContextProvider";
 
 function App() {
   return (
     <>
-      <HomePage />
+      <EntriesContextProvider>
+        <HomePage />
+      </EntriesContextProvider>
     </>
   );
 }

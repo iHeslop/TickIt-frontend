@@ -11,7 +11,7 @@ const HomePage = () => {
         <ToDoGridLoader />
       </div>
       <img src={bg} alt="background" className={styles.bg} />
-      <p className={styles.copyright}>&copy; iHeslop</p>
+      <p className={styles.copyright}>&copy; / 2024</p>
     </div>
   );
 };

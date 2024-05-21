@@ -17,12 +17,7 @@ interface ToDoEntryCardProps {
 
 const ToDoCard = ({ toDoEntry, onDelete, onSubmit }: ToDoEntryCardProps) => {
   const [isEditing, setIsEditing] = useState(false);
-  const {
-    handleSubmit,
-    register,
-    formState: { errors },
-  } = useForm({ resolver: zodResolver(schema) });
-  console.log(errors);
+  const { handleSubmit, register } = useForm({ resolver: zodResolver(schema) });
 
   const handleDelete = () => {
     onDelete(toDoEntry.id);

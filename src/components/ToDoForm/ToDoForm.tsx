@@ -7,12 +7,7 @@ interface ToDoFormProps {
 }
 
 const ToDoForm = ({ onSubmit }: ToDoFormProps) => {
-  const {
-    handleSubmit,
-    register,
-    formState: { errors },
-  } = useForm({ resolver: zodResolver(schema) });
-  console.log(errors);
+  const { handleSubmit, register } = useForm({ resolver: zodResolver(schema) });
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div>

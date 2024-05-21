@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { ToDoEntryResponse } from "../../services/api-responses.interface";
+import { useContext, useEffect, useState } from "react";
 import {
   getAllToDoEntries,
   deleteToDoEntryById,
@@ -8,9 +7,10 @@ import {
 import { ToDoFormData } from "../../components/ToDoForm/schema";
 import ToDoCard from "../../components/ToDoCard/ToDoCard";
 import styles from "./ToDoGridLoader.module.scss";
+import { EntriesContext } from "../../context/EntriesContextProvider";
 
 const ToDoGridPage = () => {
-  const [toDoEntries, setToDoEntries] = useState<ToDoEntryResponse[]>([]);
+  const { entries, setEntries } = useContext(EntriesContext);
   const [fetchStatus, setFetchStatus] = useState("");
 
   useEffect(() => {
@@ -18,7 +18,7 @@ const ToDoGridPage = () => {
     getAllToDoEntries()
       .then((data) => {
         setFetchStatus("SUCCESS");
-        setToDoEntries(data);
+        setEntries(data);
       })
       .catch((e) => {
         setFetchStatus("FAILED");
@@ -29,7 +29,7 @@ const ToDoGridPage = () => {
   const handleDeleteEntry = (id: number) => {
     deleteToDoEntryById(id)
       .then(() => {
-        setToDoEntries((prevEntries) =>
+        setEntries((prevEntries) =>
           prevEntries.filter((entry) => entry.id !== id)
         );
       })
@@ -41,7 +41,7 @@ const ToDoGridPage = () => {
   const handleUpdateEntry = (id: number, data: ToDoFormData) => {
     updateToDoEntryById(id, data)
       .then((updatedEntry) => {
-        setToDoEntries((prevEntries) =>
+        setEntries((prevEntries) =>
           prevEntries.map((entry) => (entry.id === id ? updatedEntry : entry))
         );
         console.log("ToDo Entry Updated", updatedEntry);
@@ -56,7 +56,7 @@ const ToDoGridPage = () => {
       <div className={styles.list}>
         {fetchStatus === "LOADING" && <h2>...LOADING...</h2>}
         {fetchStatus === "FAILED" && <h2>...FAILED TO LOAD...</h2>}
-        {toDoEntries.map((entry) => (
+        {entries.map((entry) => (
           <ToDoCard
             key={entry.id}
             toDoEntry={entry}
