@@ -15,3 +15,36 @@
   overflow-y: scroll;
   padding-right: 2em;
 }
+
+.selectBox {
+  display: flex;
+  &_btn {
+    font-family: "Montserrat";
+    border: 1px solid gray;
+    padding: 0.7em;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.05);
+    }
+  }
+  &_btn2 {
+    font-family: "Montserrat";
+    border: 1px solid gray;
+    border-left: 0;
+    padding: 0.7em;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.05);
+    }
+  }
+}
+
+.selected {
+  background-color: gray;
+  color: white;
+  pointer-events: none;
+}

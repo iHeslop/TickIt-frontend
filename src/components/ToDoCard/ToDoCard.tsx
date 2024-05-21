@@ -8,23 +8,59 @@ import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { schema } from "../ToDoForm/schema";
+import open from "../../assets/open-checkbox.png";
+import ticked from "../../assets/ticked-checkbox.png";
+import { updateToDoEntryById } from "../../services/todo-services";
 
 interface ToDoEntryCardProps {
   toDoEntry: ToDoEntryResponse;
   onDelete: (id: number) => void;
   onSubmit: (id: number, data: any) => void;
+  onStatusChange: (id: number, completed: boolean) => void;
 }
 
-const ToDoCard = ({ toDoEntry, onDelete, onSubmit }: ToDoEntryCardProps) => {
+const ToDoCard = ({
+  toDoEntry,
+  onDelete,
+  onSubmit,
+  onStatusChange,
+}: ToDoEntryCardProps) => {
   const [isEditing, setIsEditing] = useState(false);
+  const [isTicked, setIsTicked] = useState(toDoEntry.completed);
   const { handleSubmit, register } = useForm({ resolver: zodResolver(schema) });
 
   const handleDelete = () => {
-    onDelete(toDoEntry.id);
+    if (window.confirm("Delete Entry?") === true) {
+      onDelete(toDoEntry.id);
+    }
   };
 
   const handleEdit = () => {
     setIsEditing(!isEditing);
+  };
+
+  const handleTick = async () => {
+    const confirmation = isTicked
+      ? window.confirm("Mark entry as incomplete?")
+      : window.confirm("Mark entry as completed?");
+
+    if (confirmation) {
+      try {
+        await updateToDoEntryById(toDoEntry.id, {
+          title: toDoEntry.title,
+          content: toDoEntry.content,
+          completed: !isTicked,
+        });
+        setIsTicked(!isTicked);
+        onStatusChange(toDoEntry.id, !isTicked);
+      } catch (error) {
+        console.error("Failed to update entry:", error);
+        setIsTicked(!isTicked);
+      }
+    } else {
+      setIsTicked(!isTicked);
+      onStatusChange(toDoEntry.id, !isTicked);
+    }
   };
 
   const handleFormSubmit = (data: any) => {
@@ -43,6 +79,26 @@ const ToDoCard = ({ toDoEntry, onDelete, onSubmit }: ToDoEntryCardProps) => {
     <div className={styles.container}>
       {!isEditing && (
         <>
+          {!isTicked && (
+            <div className={styles.tick}>
+              <img
+                src={open}
+                alt="open"
+                onClick={handleTick}
+                className={styles.image}
+              />
+            </div>
+          )}
+          {isTicked && (
+            <div className={styles.tick}>
+              <img
+                src={ticked}
+                alt="ticked"
+                onClick={handleTick}
+                className={styles.image}
+              />
+            </div>
+          )}
           <div className={styles.text}>
             <h2 className={styles.text_title}>{toDoEntry.title}</h2>
             <p className={styles.text_content}>{toDoEntry.content}</p>
@@ -66,6 +122,26 @@ const ToDoCard = ({ toDoEntry, onDelete, onSubmit }: ToDoEntryCardProps) => {
       )}
       {isEditing && (
         <>
+          {!isTicked && (
+            <div className={styles.tick}>
+              <img
+                src={open}
+                alt="open"
+                onClick={handleTick}
+                className={styles.image}
+              />
+            </div>
+          )}
+          {isTicked && (
+            <div className={styles.tick}>
+              <img
+                src={ticked}
+                alt="ticked"
+                onClick={handleTick}
+                className={styles.image}
+              />
+            </div>
+          )}
           <form
             onSubmit={handleSubmit(handleFormSubmit)}
             className={styles.text}

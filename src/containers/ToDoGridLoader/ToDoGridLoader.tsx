@@ -9,8 +9,9 @@ import ToDoCard from "../../components/ToDoCard/ToDoCard";
 import styles from "./ToDoGridLoader.module.scss";
 import { EntriesContext } from "../../context/EntriesContextProvider";
 
-const ToDoGridPage = () => {
+const ToDoGridLoader = () => {
   const { entries, setEntries } = useContext(EntriesContext);
+  const [showCompleted, setShowCompleted] = useState(false);
   const [fetchStatus, setFetchStatus] = useState("");
 
   useEffect(() => {
@@ -51,17 +52,52 @@ const ToDoGridPage = () => {
       });
   };
 
+  const filteredEntries = showCompleted
+    ? entries.filter((entry) => entry.completed)
+    : entries.filter((entry) => !entry.completed);
+
+  const handleSwitchView = () => {
+    setShowCompleted(!showCompleted);
+  };
+
+  const handleStatusChange = (id: number, completed: boolean) => {
+    setEntries((prevEntries) =>
+      prevEntries.map((entry) =>
+        entry.id === id ? { ...entry, completed } : entry
+      )
+    );
+  };
+
   return (
     <div className={styles.container}>
+      <div className={styles.selectBox}>
+        <p
+          className={`${styles.selectBox_btn} ${
+            showCompleted ? "" : styles.selected
+          }`}
+          onClick={handleSwitchView}
+        >
+          Incomplete
+        </p>
+        <p
+          className={`${styles.selectBox_btn2} ${
+            showCompleted ? styles.selected : ""
+          }`}
+          onClick={handleSwitchView}
+        >
+          Completed
+        </p>
+      </div>
       <div className={styles.list}>
         {fetchStatus === "LOADING" && <h2>...LOADING...</h2>}
         {fetchStatus === "FAILED" && <h2>...FAILED TO LOAD...</h2>}
-        {entries.map((entry) => (
+        {filteredEntries.map((entry) => (
           <ToDoCard
             key={entry.id}
             toDoEntry={entry}
             onDelete={handleDeleteEntry}
             onSubmit={handleUpdateEntry}
+            onStatusChange={handleStatusChange}
           />
         ))}
       </div>
@@ -69,4 +105,4 @@ const ToDoGridPage = () => {
   );
 };
 
-export default ToDoGridPage;
+export default ToDoGridLoader;

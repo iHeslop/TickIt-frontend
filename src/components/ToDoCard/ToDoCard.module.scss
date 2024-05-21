@@ -1,7 +1,6 @@
 .container {
   display: flex;
   align-items: center;
-  gap: 30%;
   background-color: rgba(237, 236, 231, 0.9);
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   align-items: center;
@@ -41,7 +40,7 @@
     font-size: 28px;
     margin: 0;
     font-weight: bold;
-    width: 100%;
+    width: 80%;
     height: 100%;
   }
   &_date {
@@ -53,7 +52,7 @@
     font-family: "Montserrat";
     font-size: 14px;
     margin: 0;
-    width: 100%;
+    width: 80%;
   }
 }
 .box {
@@ -61,4 +60,8 @@
   gap: 1em;
   justify-content: center;
   align-items: center;
+}
+
+.tick {
+  width: 8%;
 }

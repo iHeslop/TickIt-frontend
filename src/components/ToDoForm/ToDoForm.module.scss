@@ -1,0 +1,42 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  width: 60%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.textInput {
+  font-family: "Montserrat";
+  height: 2em;
+  width: 97%;
+  padding: 1%;
+  border-radius: 10px;
+  border: 1px solid black;
+}
+
+.btnBox {
+  &_btn {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Montserrat";
+    font-size: 18px;
+    height: 2em;
+    padding: 2%;
+    border-radius: 10px;
+    border: 1px solid black;
+    transition: 0.2s ease-in-out;
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.02);
+      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    }
+  }
+}
