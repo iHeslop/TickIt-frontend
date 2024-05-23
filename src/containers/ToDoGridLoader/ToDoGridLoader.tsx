@@ -69,7 +69,7 @@ const ToDoGridLoader = () => {
   };
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} data-testid="todo-grid">
       <div className={styles.selectBox}>
         <p
           className={`${styles.selectBox_btn} ${

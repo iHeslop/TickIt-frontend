@@ -20,7 +20,7 @@ const NewToDoPage = () => {
       });
   };
   return (
-    <div className={styles.container}>
+    <div className={styles.container} data-testid="new-todo">
       <div className={styles.imageBox}>
         <img src={ToDo} alt="todo" className={styles.image} />
       </div>

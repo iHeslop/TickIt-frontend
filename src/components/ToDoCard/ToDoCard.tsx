@@ -30,7 +30,7 @@ const ToDoCard = ({
   const { handleSubmit, register } = useForm({ resolver: zodResolver(schema) });
 
   const handleDelete = () => {
-    if (window.confirm("Delete Entry?") === true) {
+    if (window.confirm("Delete Entry?")) {
       onDelete(toDoEntry.id);
     }
   };
@@ -55,11 +55,7 @@ const ToDoCard = ({
         onStatusChange(toDoEntry.id, !isTicked);
       } catch (error) {
         console.error("Failed to update entry:", error);
-        setIsTicked(!isTicked);
       }
-    } else {
-      setIsTicked(!isTicked);
-      onStatusChange(toDoEntry.id, !isTicked);
     }
   };
 
@@ -73,7 +69,7 @@ const ToDoCard = ({
     .toString()
     .padStart(2, "0");
   const day: string = updatedAtDate.getDate().toString().padStart(2, "0");
-  const monthDay: string = `${day} / ${month} `;
+  const monthDay: string = `${day} / ${month}`;
 
   return (
     <div className={styles.container}>
@@ -116,6 +112,7 @@ const ToDoCard = ({
               alt="delete"
               onClick={handleDelete}
               className={styles.image_checks}
+              data-testid="delete"
             />
           </div>
         </>
@@ -145,6 +142,7 @@ const ToDoCard = ({
           <form
             onSubmit={handleSubmit(handleFormSubmit)}
             className={styles.text}
+            data-testid="submit"
           >
             <div className={styles.inputBox}>
               <input
@@ -152,6 +150,7 @@ const ToDoCard = ({
                 id="titleInput"
                 type="text"
                 defaultValue={toDoEntry.title}
+                data-testid="titleInput"
                 {...register("title")}
               />
             </div>
@@ -161,6 +160,7 @@ const ToDoCard = ({
                 id="contentInput"
                 type="text"
                 defaultValue={toDoEntry.content}
+                data-testid="contentInput"
                 {...register("content")}
               />
             </div>

@@ -1,23 +1,27 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { schema } from "./schema";
+import { schema, ToDoFormData } from "./schema";
 import styles from "./ToDoForm.module.scss";
 
 interface ToDoFormProps {
-  onSubmit: (data: unknown) => unknown;
+  onSubmit: (data: ToDoFormData) => unknown;
 }
 
 const ToDoForm = ({ onSubmit }: ToDoFormProps) => {
-  const { handleSubmit, register, reset } = useForm({
+  const { handleSubmit, register, reset } = useForm<ToDoFormData>({
     resolver: zodResolver(schema),
   });
-  const handleFormSubmit = (data: unknown) => {
+  const handleFormSubmit = (data: ToDoFormData) => {
     onSubmit(data);
     reset();
   };
 
   return (
-    <form onSubmit={handleSubmit(handleFormSubmit)} className={styles.main}>
+    <form
+      onSubmit={handleSubmit(handleFormSubmit)}
+      className={styles.main}
+      data-testid="todo-form"
+    >
       <div className={styles.container}>
         <div className={styles.box}>
           <input
