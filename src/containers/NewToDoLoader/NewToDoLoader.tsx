@@ -5,6 +5,7 @@ import ToDoForm from "../../components/ToDoForm/ToDoForm";
 import styles from "./NewToDoLoader.module.scss";
 import { EntriesContext } from "../../context/EntriesContextProvider";
 import ToDo from "../../assets/todo.png";
+import { toast } from "react-toastify";
 
 const NewToDoPage = () => {
   const { entries, setEntries } = useContext(EntriesContext);
@@ -16,6 +17,7 @@ const NewToDoPage = () => {
         setEntries([...entries, data]);
       })
       .catch((e) => {
+        toast.error("Failed to create entry");
         console.warn(e);
       });
   };

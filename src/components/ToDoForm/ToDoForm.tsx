@@ -2,7 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { schema, ToDoFormData } from "./schema";
 import styles from "./ToDoForm.module.scss";
-
+import { toast } from "react-toastify";
 interface ToDoFormProps {
   onSubmit: (data: ToDoFormData) => unknown;
 }
@@ -13,6 +13,7 @@ const ToDoForm = ({ onSubmit }: ToDoFormProps) => {
   });
   const handleFormSubmit = (data: ToDoFormData) => {
     onSubmit(data);
+    toast.success("Entry added");
     reset();
   };
 

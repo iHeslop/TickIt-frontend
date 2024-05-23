@@ -8,6 +8,7 @@ import { ToDoFormData } from "../../components/ToDoForm/schema";
 import ToDoCard from "../../components/ToDoCard/ToDoCard";
 import styles from "./ToDoGridLoader.module.scss";
 import { EntriesContext } from "../../context/EntriesContextProvider";
+import { toast } from "react-toastify";
 
 const ToDoGridLoader = () => {
   const { entries, setEntries } = useContext(EntriesContext);
@@ -23,6 +24,7 @@ const ToDoGridLoader = () => {
       })
       .catch((e) => {
         setFetchStatus("FAILED");
+        toast.error("Failed to fetch entries");
         console.warn(e);
       });
   }, []);
@@ -35,6 +37,7 @@ const ToDoGridLoader = () => {
         );
       })
       .catch((e) => {
+        toast.error("Failed to delete entry");
         console.warn("Failed to delete entry", e);
       });
   };
@@ -48,6 +51,7 @@ const ToDoGridLoader = () => {
         console.log("ToDo Entry Updated", updatedEntry);
       })
       .catch((e) => {
+        toast.error("Failed to update entry");
         console.warn(e);
       });
   };

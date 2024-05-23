@@ -11,6 +11,7 @@ import { schema } from "../ToDoForm/schema";
 import open from "../../assets/open-checkbox.png";
 import ticked from "../../assets/ticked-checkbox.png";
 import { updateToDoEntryById } from "../../services/todo-services";
+import { toast } from "react-toastify";
 
 interface ToDoEntryCardProps {
   toDoEntry: ToDoEntryResponse;
@@ -32,6 +33,7 @@ const ToDoCard = ({
   const handleDelete = () => {
     if (window.confirm("Delete Entry?")) {
       onDelete(toDoEntry.id);
+      toast.info("Entry Deleted");
     }
   };
 
@@ -51,9 +53,11 @@ const ToDoCard = ({
           content: toDoEntry.content,
           completed: !isTicked,
         });
+        toast.info("Entry Updated");
         setIsTicked(!isTicked);
         onStatusChange(toDoEntry.id, !isTicked);
       } catch (error) {
+        toast.error("Failed to update Entry");
         console.error("Failed to update entry:", error);
       }
     }
@@ -61,6 +65,7 @@ const ToDoCard = ({
 
   const handleFormSubmit = (data: any) => {
     onSubmit(toDoEntry.id, data);
+    toast.info("Entry Updated");
     setIsEditing(false);
   };
 
