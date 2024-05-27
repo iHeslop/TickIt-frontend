@@ -95,6 +95,9 @@ const ToDoGridLoader = () => {
       <div className={styles.list}>
         {fetchStatus === "LOADING" && <h2>...LOADING...</h2>}
         {fetchStatus === "FAILED" && <h2>...FAILED TO LOAD...</h2>}
+         {fetchStatus === "SUCCESS" && filteredEntries.length === 0 && (
+          <h1>No current Todo entries</h1>
+        )}
         {filteredEntries.map((entry) => (
           <ToDoCard
             key={entry.id}
