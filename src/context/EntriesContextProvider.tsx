@@ -6,7 +6,6 @@ import {
   SetStateAction,
 } from "react";
 import { ToDoEntryResponse } from "../services/api-responses.interface";
-import { Bounce, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 interface EntriesContextValue {
@@ -37,19 +36,6 @@ const EntriesContextProvider = ({ children }: EntriesContextProviderProps) => {
   return (
     <EntriesContext.Provider value={providedValues}>
       {children}
-      <ToastContainer
-        position="bottom-left"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
-        transition={Bounce}
-      />
     </EntriesContext.Provider>
   );
 };

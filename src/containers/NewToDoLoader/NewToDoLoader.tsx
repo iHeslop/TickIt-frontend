@@ -7,7 +7,7 @@ import { EntriesContext } from "../../context/EntriesContextProvider";
 import ToDo from "../../assets/todo.png";
 import { toast } from "react-toastify";
 
-const NewToDoPage = () => {
+const NewToDoLoader = () => {
   const { entries, setEntries } = useContext(EntriesContext);
 
   const onSubmit = (data: unknown) => {
@@ -34,4 +34,4 @@ const NewToDoPage = () => {
   );
 };
 
-export default NewToDoPage;
+export default NewToDoLoader;

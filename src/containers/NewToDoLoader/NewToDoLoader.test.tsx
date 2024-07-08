@@ -1,24 +1,24 @@
 import { render, fireEvent, waitFor, screen } from "@testing-library/react";
 import { EntriesContext } from "../../context/EntriesContextProvider";
-import NewToDoPage from "./NewToDoLoader";
+import NewToDoLoader from "./NewToDoLoader";
 import { createToDoEntry } from "../../services/todo-services";
 import { vi } from "vitest";
 
-describe("NewToDoPage", () => {
+describe("NewToDoLoader", () => {
   const onSubmit = vi.fn();
   beforeEach(() => {
     vi.resetAllMocks();
   });
 
-  it("renders NewToDoPage correctly", () => {
-    const { getByText } = render(<NewToDoPage />);
+  it("renders NewToDoLoader correctly", () => {
+    const { getByText } = render(<NewToDoLoader />);
     expect(getByText("TickIt")).toBeInTheDocument();
   });
 
   it("calls createToDoEntry and updates entries context on form submission", async () => {
     render(
       <EntriesContext.Provider value={{ entries: [], setEntries: onSubmit }}>
-        <NewToDoPage />
+        <NewToDoLoader />
       </EntriesContext.Provider>
     );
     const form = screen.getByTestId("todo-form");
@@ -41,7 +41,7 @@ describe("NewToDoPage", () => {
       },
     }));
 
-    const { getByTestId } = render(<NewToDoPage />);
+    const { getByTestId } = render(<NewToDoLoader />);
 
     fireEvent.submit(getByTestId("todo-form"));
 
